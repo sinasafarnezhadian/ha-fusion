@@ -20,6 +20,7 @@
 	import ConfigButtons from '$lib/Modal/ConfigButtons.svelte';
 	import Ripple from 'svelte-ripple';
 	import PictureElements from '$lib/Main/PictureElements.svelte';
+	import Template from '$lib/Sidebar/Template.svelte';
 
 	export let isOpen: boolean;
 	export let sel: any;
@@ -123,7 +124,15 @@
 				demo: $demo.media_player,
 				sel
 			}
-		}
+		},
+		{
+			id: 'template',
+			type: $lang('template'),
+			component: Template,
+			props: {
+				demo: true
+			}
+		},
 	];
 
 	async function handleClick(id: string) {
@@ -154,6 +163,9 @@
 					demo: $demo.media_player,
 					sel
 				});
+				break;
+			case 'template':
+				openModal(() => import('$lib/Modal/TemplateConfig.svelte'), { sel });
 				break;
 			case 'picture_elements': {
 				loadIcons(Object.values(icons));

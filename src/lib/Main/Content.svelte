@@ -6,6 +6,8 @@
 	import Camera from '$lib/Main/Camera.svelte';
 	import Configure from '$lib/Main/Configure.svelte';
 	import Empty from '$lib/Main/Empty.svelte';
+	import Template from '$lib/Sidebar/Template.svelte';
+
 
 	export let item: any;
 	export let sectionName: string | undefined = undefined;
@@ -23,6 +25,8 @@
 	<Button sel={item} {sectionName} />
 {:else if item?.type === 'conditional_media'}
 	<ConditionalMedia sel={item} />
+{:else if item?.type === 'template'}
+	<Template sel={item} />
 {:else if item?.type === 'picture_elements'}
 	<PictureElements sel={item} />
 {:else if item?.type === 'camera'}

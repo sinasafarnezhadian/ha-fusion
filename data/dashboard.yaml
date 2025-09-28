@@ -12,6 +12,9 @@ views:
           - name: Test
             id: 2171067078835
             items:
+              - id: 7815561096339
+                type: button
+                entity_id: automation.mahans_lufter_steuerung
               - type: button
                 entity_id: light.studio_dator
                 id: 5008685947164
@@ -30,7 +33,7 @@ views:
                 id: 7351468287678
               - type: button
                 id: 3728122340522
-                entity_id: switch.deltaco_sh_p01_socket
+                entity_id: automation.projektor_wecker
           - name: Studio
             id: 9828119797472
             items:
@@ -44,78 +47,6 @@ views:
                 entity_id: switch.gosund_monitors_switch
                 id: 8082348418851
                 icon: material-symbols:speaker
-      - type: horizontal-stack
-        id: 4240433563768
-        sections:
-          - name: Media
-            id: 7859955675791
-            items:
-              - type: media
-                id: 5276106620601
-                conditional:
-                  - entity_id: sensor.plex_recently_added
-                    name: Senast tillagt
-                    icon: mdi:plex
-                    color: orange
-                  - entity_id: media_player.vardagsrum
-                  - entity_id: media_player.sovrum
-                  - entity_id: media_player.spotify
-                    icon: mdi:spotify
-                  - entity_id: media_player.kok
-          - name: Övrigt
-            items:
-              - type: button
-                id: 4326750373921
-                entity_id: light.badrum_group
-              - type: button
-                id: 6654837792944
-                entity_id: switch.gosund_fan_switch
-                icon: mdi:fan
-              - type: button
-                id: 9182560073626
-                entity_id: light.garderob_lampa
-                name: Garderob
-                icon: material-symbols:door-front-sharp
-              - type: button
-                id: 6583508288448
-                entity_id: light.hall_group
-                name: Hall
-              - type: button
-                entity_id: light.sovrum_group
-                id: 4536918822520
-              - type: button
-                entity_id: climate.ac
-                marquee: true
-                id: 2763550457343
-                name: Klimat
-              - type: button
-                entity_id: switch.ps5_635_power
-                color: '#1cd760'
-                marquee: true
-                id: 8427787269294
-                name: Playstation
-              - type: button
-                entity_id: media_player.samsung
-                id: 1503994513807
-            id: 7274165372538
-      - name: Hemma
-        items:
-          - type: button
-            id: 5560216674913
-            entity_id: person.matte
-            icon: fluent-emoji-flat:alien
-          - type: button
-            id: 8128083996424
-            entity_id: person.sanja
-          - type: button
-            id: 3574383219011
-            entity_id: script.home_leave
-            icon: fluent:hand-wave-20-filled
-          - type: button
-            id: 3827902926530
-            entity_id: script.home_arrive
-            icon: material-symbols:home-rounded
-        id: 1412018494330
   - name: Entities
     icon: material-symbols:filter-list-rounded
     id: 5813909951190
@@ -253,7 +184,7 @@ sidebar:
     date: false
     id: 2790676343773
   - type: weather
-    entity_id: weather.openweathermap
+    entity_id: weather.home
     weather_sensor: sensor.openweathermap_weather
     extra_sensor: sensor.openweathermap_forecast_precipitation_probability
     extra_sensor_icon: mdi:drop

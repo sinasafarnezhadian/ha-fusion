@@ -1,6 +1,6 @@
 name: "HA FUSION SINA"
 description: "My first real add-on!"
-version: "2025.0.5"
+version: "2025.0.3"
 slug: "ha_fusion_sina"
 init: false
 arch:

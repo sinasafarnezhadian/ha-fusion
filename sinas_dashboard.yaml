@@ -1,0 +1,159 @@
+views:
+  - name: Home
+    id: 2366010786636
+    sections:
+      - type: horizontal-stack
+        sections:
+          - name: Wohnzimmer
+            items:
+              - id: 6348611391084
+                type: button
+                entity_id: light.standleuchte_2
+              - id: 7944245422741
+                type: button
+                entity_id: light.esszimmertischlampe_lokal
+                name: Esstisch
+                template:
+                  state: |-
+                    {% if is_state(entity_id, "on") %}
+                      An
+                    {% else %}
+                      Aus
+                    {% endif %}
+              - id: 2376812160385
+                type: button
+                entity_id: switch.anlagensteckdose_lokal_switch_1
+                name: TV + AVR
+                icon: material-symbols:tv-gen-outline-sharp
+                more_info: false
+              - id: 3189103918822
+                type: button
+                entity_id: media_player.wohnzimmer_musik_box_3
+                template:
+                  name: |-
+                    {% if is_state(entity_id, "playing") %}
+                      {{ state_attr(entity_id, "media_title") }}
+                    {% else %}
+                      Sonos Player
+                    {% endif %}
+                  state: |-
+                    {% if is_state(entity_id, "playing") %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 48 48"><defs><mask id="SVGu4ff0bvt"><g fill="none" stroke-linejoin="round" stroke-width="4"><path fill="#fff" stroke="#fff" d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"/><path fill="#000" stroke="#000" d="M20 24v-6.928l6 3.464L32 24l-6 3.464l-6 3.464z"/></g></mask></defs><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#SVGu4ff0bvt)"/></svg> {{ state_attr(entity_id, "media_artist") }}
+                    {% elif is_state(entity_id, "paused") %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" fill-rule="evenodd" d="M12 6A6 6 0 1 1 0 6a6 6 0 0 1 12 0M3 3.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 3a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5z" clip-rule="evenodd"/></svg>
+                    {% else %}
+                      Aus
+                    {% endif %}
+                  service: |-
+                    service: media_player.media_play_pause
+                    data: {}
+              - id: 8415385653737
+                type: button
+                entity_id: climate.wohnzimmer_heizungsgruppe
+                template:
+                  service: |-
+                    service: climate.set_hvac_mode
+                    data: {}
+            id: 2258238427561
+          - name: Abschnitt
+            items:
+              - id: 3480957139657
+                type: conditional_media
+                entity_id: image.hof_ctq3w_e16475858_last_motion_image
+                media_players:
+                  - entity_id: media_player.wohnzimmer_musik_box_3
+                  - entity_id: media_player.wohnzimmer
+                show_timeout: true
+                marquee: true
+            id: 8199396264054
+        id: 5285748155307
+      - name: Abschnitt
+        items: []
+        id: 6898927678062
+  - name: Übersicht
+    id: 4539580121475
+    sections:
+      - type: horizontal-stack
+        sections:
+          - name: Abschnitt
+            items:
+              - id: 7759010936786
+                type: button
+                entity_id: sensor.younes_mensa_bestellung
+                template:
+                  state: '{{ state_attr(entity_id, "Montag") }}'
+                  service: <h1>hallo</h1>
+                  set_state: '{{ state_attr(entity_id, ''Dienstag'') }}'
+                  name: adasdasd
+                more_info: false
+            id: 6102392697639
+          - name: Abschnitt
+            items: []
+            id: 9486969695210
+        id: 2723744417495
+sidebar:
+  - id: 9992506158889
+    type: notifications
+  - id: 1335628722950
+    type: template
+    template: |-
+      <small>{% if (states("sensor.geoffnetefentertur") | int > 0) %}
+      Geöfnete Fenster/Türen: 
+      {{states("sensor.name_der_offenen_fenster_und_turen")}}
+      {% else %}
+      Alle Fenster und Türen sind zu!
+      {% endif %}
+      </small>
+      <br>
+      <small>
+      {{states("sensor.avi_abfall_kalender")}}
+      </small>
+  - id: 7793820858625
+    type: divider
+  - id: 8426786767812
+    type: time
+    seconds: true
+  - id: 3479331708777
+    type: date
+    short_day: false
+    short_month: false
+    hide: none
+    layout: horizontal
+  - id: 7592215094207
+    type: weather
+    entity_id: weather.forecast_home
+    sensor: sensor.home_gewitterwahrscheinlichkeit_tag_0
+    icon: mdi:weather-rainy
+  - id: 7083328170753
+    type: divider
+  - id: 9874683561393
+    type: radial
+    entity_id: sensor.hyper_2000_garten_electric_level
+    stroke: 6
+    name: PV Speicher
+  - id: 1214275263306
+    type: divider
+  - id: 4421464366493
+    type: template
+    template: >-
+      <h5>Younes</h5>
+
+      <small>Heute: {{ state_attr("sensor.younes_mensa_bestellung", "Heute")
+      }}</small><br/>
+
+      <small>Morgen: {{ state_attr("sensor.younes_mensa_bestellung", "Morgen")
+      }}</small>
+  - id: 6870050790445
+    type: template
+    template: >-
+      <h5>Mahan</h5>
+
+      <small>Heute: {{ state_attr("sensor.mahan_mensa_bestellung", "Heute")
+      }}</small><br/>
+
+      <small>Morgen: {{ state_attr("sensor.mahan_mensa_bestellung", "Morgen")
+      }}</small>
+sidebarWidth: 371
+theme: godis
+hide_views: false
+hide_sidebar: false

@@ -6,7 +6,7 @@
 	import Camera from '$lib/Main/Camera.svelte';
 	import Configure from '$lib/Main/Configure.svelte';
 	import Empty from '$lib/Main/Empty.svelte';
-	import Template from '$lib/Sidebar/Template.svelte';
+	import Template from '$lib/Main/Template.svelte';
 
 
 	export let item: any;

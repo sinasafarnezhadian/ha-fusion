@@ -5,8 +5,8 @@ WORKDIR /app
 # copy all files
 COPY . .
 
-# install, build and prune
 RUN npm install --verbose && \
+  npx svelte-kit sync && \
   npm run build && \
   npm prune --omit=dev
 

@@ -24,6 +24,7 @@
 
 	let mounted = false;
 	onMount(() => (mounted = true));
+	onMount(() => (console.log('Main mounted')));
 
 	$: dndOptions = {
 		flipDurationMs: $motion,
@@ -180,7 +181,15 @@
     `;
 	}
 
-	function itemStyles(type: string) {
+	function itemStyles(type: string, width?: string, height?: string) {
+		if (width || height) {
+			
+			return `
+				grid-column: span ${width ? width : '1'};
+				grid-row: span  ${height ? height : '1'};
+			`;
+		}
+		
 		const large = ['conditional_media', 'picture_elements', 'camera'];
 		return `
 			grid-column: ${large.includes(type) ? 'span 2' : 'span 1'};
@@ -274,6 +283,9 @@
 		: typeof mounted === 'boolean' &&
 			typeof $mediaQueries === 'object' &&
 			handleVisibility($editMode, view?.sections, $states);
+
+			console.log(view?.sections?.items);
+			
 </script>
 
 <main
@@ -284,7 +296,7 @@
 	on:finalize={dragSection}
 >
 	{#each viewSections as section (`${section?.id}${section?.[SHADOW_ITEM_MARKER_PROPERTY_NAME] ? '_' + section?.[SHADOW_ITEM_MARKER_PROPERTY_NAME] : ''}`)}
-		<section
+	<section
 			id={String(section?.id)}
 			data-is-dnd-shadow-item-hint={section?.[SHADOW_ITEM_MARKER_PROPERTY_NAME]}
 			animate:flip={{ duration: $motion }}
@@ -337,7 +349,7 @@
 										class="item"
 										animate:flip={{ duration: $motion }}
 										tabindex="-1"
-										style={itemStyles(item?.type)}
+										style={itemStyles(item?.type, item?.width, item?.height)}
 									>
 										<Content {item} sectionName={stackSection?.name} />
 									</div>
@@ -372,6 +384,7 @@
 							tabindex="-1"
 							class:divider={index !== section?.items?.length - 1}
 						>
+						HALLO
 							<Scenes sel={item} />
 						</div>
 					{/each}
@@ -403,7 +416,7 @@
 							class="item"
 							animate:flip={{ duration: $motion }}
 							tabindex="-1"
-							style={itemStyles(item?.type)}
+							style={itemStyles(item?.type, item?.width, item?.height)}
 						>
 							<Content {item} sectionName={section?.name} />
 						</div>
@@ -447,6 +460,10 @@
 		gap: 0.4rem;
 		border-radius: 0.6rem;
 		height: 100%;
+	}
+	.double-width {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 30.5rem);
 	}
 
 	.item {

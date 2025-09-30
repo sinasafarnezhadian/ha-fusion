@@ -13,6 +13,8 @@
 	export let sel: TemplateItem;
 
 	let value = sel?.template;
+	let width = sel?.width;
+	let height = sel?.height;
 	let modalTransitionEnd = false;
 
 	function handleEvent() {
@@ -92,6 +94,26 @@
 				{$lang('hidden')}
 			</button>
 		</div>
+
+		<h2>{$lang('size')}</h2>
+
+		<div class="button-container">
+			<input
+				name={$lang('width')}
+				class="input"
+			 	type="text"
+				bind:value={width}
+				on:change={(event) => set('width', event)}
+			/>
+			<!-- <input
+				name={$lang('height')}
+				class="input"
+			 	type="text"
+				bind:value={height}
+				on:change={(event) => set('height', event)}
+			/> -->
+		</div>
+
 
 		<ConfigButtons {sel} />
 	</Modal>

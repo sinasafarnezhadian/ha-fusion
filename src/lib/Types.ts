@@ -237,6 +237,9 @@ export interface TemplateItem {
 	id?: number;
 	template?: string;
 	hide_mobile?: boolean;
+	size?: number
+	width?: number
+	height?: number
 }
 
 export interface TimeItem {

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { connection, config, editMode, templates, lang } from '$lib/Stores';
 	import { marked } from 'marked';
-	import { onDestroy } from 'svelte';
 	import { openModal } from 'svelte-modals';
 	import type { TemplateItem } from '$lib/Types';
 
@@ -63,6 +62,7 @@
 	on:keydown
 	role="button"
 	tabindex="0"
+	class="container"
 >
 	{#if demo}
 		<div class="template">
@@ -79,12 +79,17 @@
 
 <style>
 	.container {
-		width: 14.5rem;
-		background-color: rgba(255, 255, 255, 0.25);
+		--container-padding: 0.72rem;
+
+		/* width: 14.5rem; */
+		background-color: var(--theme-button-background-color-off);
 		border-radius: 0.65rem;
 		margin: 0;
-		outline: 2px dashed #fff;
-		outline-offset: -2px;
+	}
+
+	.container span {
+		padding: var(--container-padding);
+		display: block;
 	}
 
 	/* Phone and Tablet (portrait) */

@@ -116,3 +116,7 @@ List grouped by domains and categorized based on their similar behaviors
 
 <https://www.home-assistant.io/integrations/demo/> <br>
 <https://github.com/home-assistant/core/blob/dev/homeassistant/const.py>
+
+
+Todo
+- [ ] Add Media Control to Media Player

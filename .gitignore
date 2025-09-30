@@ -14,3 +14,7 @@ src/lib/Playground
 /data/configuration.yaml
 /data/youtube_credentials.json
 /data/version.json
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

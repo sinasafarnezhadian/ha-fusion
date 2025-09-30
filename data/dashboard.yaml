@@ -63,27 +63,136 @@ views:
             type: template
             template: hura
         id: 6898927678062
-  - name: Übersicht
+  - name: OG
     id: 4539580121475
     sections:
       - type: horizontal-stack
         sections:
-          - name: Abschnitt
+          - name: Younes
             items:
-              - id: 7759010936786
+              - id: 1039632303396
                 type: button
-                entity_id: sensor.younes_mensa_bestellung
-                template:
-                  state: '{{ state_attr(entity_id, "Montag") }}'
-                  service: <h1>hallo</h1>
-                  set_state: '{{ state_attr(entity_id, ''Dienstag'') }}'
-                  name: adasdasd
+                entity_id: sensor.th_sensor_temperature
                 more_info: false
+                template:
+                  state: >-
+                    Luftfeuchtigkeit {{states('sensor.th_sensor_humidity') |
+                    round}}%
+                  name: >-
+                    Temperatur {{ states('sensor.th_sensor_temperature') | round
+                    }}°C
+              - id: 9331474254417
+                type: button
+                entity_id: fan.younes_lufter
+                name: Lüfter
+              - id: 5183535381071
+                type: button
+                entity_id: binary_sensor.fensterkontakt_younes_contact
+                template:
+                  state: |-
+                    {% if is_state(entity_id, "on") %}
+                      Geöffnet
+                    {% else %}
+                      Geschlossen
+                    {% endif %}
+                  color: |-
+                    {% if is_state(entity_id, "on") %}
+                      darkred
+                    {% else %}
+                      darkgreen
+                    {% endif %}
+                name: Fenster
+              - id: 8592003642633
+                type: button
+                entity_id: binary_sensor.balkonturkontakt_younes_contact
+                name: Balkontür
+                template:
+                  state: |-
+                    {% if is_state(entity_id, "on") %}
+                      Geöffnet
+                    {% else %}
+                      Geschlossen
+                    {% endif %}
+                  color: |-
+                    {% if is_state(entity_id, "on") %}
+                      darkred
+                    {% else %}
+                      darkgreen
+                    {% endif %}
+              - id: 8193975659369
+                type: button
+                entity_id: light.smart_star_projector_2
+                name: Projektor
             id: 6102392697639
-          - name: Abschnitt
-            items: []
+          - name: Mahan
+            items:
+              - id: 1868001590309
+                type: button
+                entity_id: sensor.temperatur_familienzimmer_temperatur
+                template:
+                  name: >-
+                    Temperatur {{
+                    states('sensor.temperatur_familienzimmer_temperatur') |
+                    round }}°C
+                  state: >-
+                    Luftfeuchtigkeit
+                    {{states('sensor.temperatur_familienzimmer_luftfeuchtigkeit')
+                    | round }}%
+              - id: 9907067412046
+                type: button
+                entity_id: fan.mahans_lufter_steckdose_1
+                name: Lüfter
+              - id: 9959088352789
+                type: button
+                entity_id: light.mahans_bettlicht
+                name: Bettlicht
             id: 9486969695210
         id: 2723744417495
+      - type: horizontal-stack
+        sections:
+          - name: Schlafzimmer
+            items:
+              - id: 5275754151500
+                type: button
+                entity_id: binary_sensor.balkonturkontakt_contact
+                name: Balkontür
+                template:
+                  state: |-
+                    {% if is_state(entity_id, "on") %}
+                      Geöffnet
+                    {% else %}
+                      Geschlossen
+                    {% endif %}
+                  color: |-
+                    {% if is_state(entity_id, "on") %}
+                      darkred
+                    {% else %}
+                      darkgreen
+                    {% endif %}
+              - id: 8372410923201
+                type: button
+                entity_id: fan.luftfilter_schlafz
+                name: Lüfter
+              - id: 5900246521862
+                type: button
+                entity_id: light.schlafzimmerlicht_2
+                name: Licht
+              - id: 6841242485397
+                type: button
+                entity_id: sensor.schlafzimmerthsensor_temperature
+                template:
+                  name: >-
+                    Temperatur {{
+                    states('sensor.schlafzimmerthsensor_temperature') | round
+                    }}°C
+                  state: >-
+                    Luftf. {{states('sensor.schlafzimmerthsensor_humidity') |
+                    int}}%
+            id: 7354759993856
+          - name: ' '
+            items: []
+            id: 7513582724019
+        id: 2172067417902
 sidebar:
   - id: 9992506158889
     type: notifications
@@ -144,7 +253,7 @@ sidebar:
 
       <small>Morgen: {{ state_attr("sensor.mahan_mensa_bestellung", "Morgen")
       }}</small>
-sidebarWidth: 437
+sidebarWidth: 396
 theme: godis
 hide_views: false
 hide_sidebar: false

@@ -384,7 +384,6 @@
 							tabindex="-1"
 							class:divider={index !== section?.items?.length - 1}
 						>
-						HALLO
 							<Scenes sel={item} />
 						</div>
 					{/each}

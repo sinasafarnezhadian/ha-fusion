@@ -24,6 +24,11 @@ List grouped by domains and categorized based on their similar behaviors
 - [x] scene
 - [x] sun
 
+### weather
+- [ ] real feel and real temp:
+	- [ ] better seperation
+	- [ ] more flexibility to edit content
+
 ### Switch
 
 - [x] automation

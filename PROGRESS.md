@@ -28,6 +28,7 @@ List grouped by domains and categorized based on their similar behaviors
 - [ ] real feel and real temp:
 	- [ ] better seperation
 	- [ ] more flexibility to edit content
+	- [ ] add wethaer to main content
 
 ### Switch
 

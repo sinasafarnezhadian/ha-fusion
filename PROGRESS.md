@@ -29,6 +29,7 @@ List grouped by domains and categorized based on their similar behaviors
 	- [ ] better seperation
 	- [ ] more flexibility to edit content
 	- [ ] add wethaer to main content
+ 	- [ ] Main Content Button with more Information
 
 ### Switch
 

@@ -181,19 +181,26 @@
     `;
 	}
 
-	function itemStyles(type: string, width?: number) {
+	function itemStyles(type: string, width?: number, height?: number) {
 		const large = ['conditional_media', 'picture_elements', 'camera'];
 		const numericWidth = Number(width);
+		const numericHeight = Number(height);
 		const columnSpan =
 			Number.isFinite(numericWidth) && numericWidth > 0
 				? Math.round(numericWidth)
 				: large.includes(type)
 					? 2
 					: 1;
+		const rowSpan =
+			Number.isFinite(numericHeight) && numericHeight > 0
+				? Math.round(numericHeight)
+				: large.includes(type)
+					? 4
+					: 1;
 
 		return `
 			grid-column: span ${columnSpan};
-			grid-row: ${large.includes(type) ? 'span 4' : 'span 1'};
+			grid-row: span ${rowSpan};
 			display: ${type ? '' : 'none'};
     `;
 	}
@@ -346,7 +353,7 @@
 										class="item"
 										animate:flip={{ duration: $motion }}
 										tabindex="-1"
-										style={itemStyles(item?.type, item?.width)}
+										style={itemStyles(item?.type, item?.width, item?.height)}
 									>
 										<Content {item} sectionName={stackSection?.name} />
 									</div>
@@ -412,7 +419,7 @@
 							class="item"
 							animate:flip={{ duration: $motion }}
 							tabindex="-1"
-							style={itemStyles(item?.type, item?.width)}
+							style={itemStyles(item?.type, item?.width, item?.height)}
 						>
 							<Content {item} sectionName={section?.name} />
 						</div>

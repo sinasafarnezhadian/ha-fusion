@@ -283,9 +283,6 @@
 		: typeof mounted === 'boolean' &&
 			typeof $mediaQueries === 'object' &&
 			handleVisibility($editMode, view?.sections, $states);
-
-			console.log(view?.sections?.items);
-			
 </script>
 
 <main

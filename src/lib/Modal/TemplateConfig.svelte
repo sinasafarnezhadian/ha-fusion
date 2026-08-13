@@ -14,7 +14,6 @@
 
 	let value = sel?.template;
 	let width = sel?.width;
-	let height = sel?.height;
 	let modalTransitionEnd = false;
 
 	function handleEvent() {
@@ -24,6 +23,13 @@
 	function set(key: string, event?: any) {
 		sel = updateObj(sel, key, event);
 		$dashboard = $dashboard;
+	}
+
+	function setWidth(event: Event) {
+		const target = event.target as HTMLInputElement;
+		const parsed = target.valueAsNumber;
+		width = Number.isFinite(parsed) && parsed > 0 ? Math.round(parsed) : undefined;
+		set('width', width);
 	}
 
 	onDestroy(() => $record());
@@ -101,17 +107,12 @@
 			<input
 				name={$lang('width')}
 				class="input"
-			 	type="text"
+				type="number"
+				min="1"
+				step="1"
 				bind:value={width}
-				on:change={(event) => set('width', event)}
+				on:change={setWidth}
 			/>
-			<!-- <input
-				name={$lang('height')}
-				class="input"
-			 	type="text"
-				bind:value={height}
-				on:change={(event) => set('height', event)}
-			/> -->
 		</div>
 
 

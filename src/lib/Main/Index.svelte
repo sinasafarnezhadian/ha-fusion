@@ -181,19 +181,26 @@
     `;
 	}
 
-	function itemStyles(type: string, width?: string, height?: string) {
-		if (width || height) {
-			
-			return `
-				grid-column: span ${width ? width : '1'};
-				grid-row: span  ${height ? height : '1'};
-			`;
-		}
-		
+	function itemStyles(type: string, width?: number, height?: number) {
 		const large = ['conditional_media', 'picture_elements', 'camera'];
+		const numericWidth = Number(width);
+		const numericHeight = Number(height);
+		const columnSpan =
+			Number.isFinite(numericWidth) && numericWidth > 0
+				? Math.round(numericWidth)
+				: large.includes(type)
+					? 2
+					: 1;
+		const rowSpan =
+			Number.isFinite(numericHeight) && numericHeight > 0
+				? Math.round(numericHeight)
+				: large.includes(type)
+					? 4
+					: 1;
+
 		return `
-			grid-column: ${large.includes(type) ? 'span 2' : 'span 1'};
-			grid-row: ${large.includes(type) ? 'span 4' : 'span 1'};
+			grid-column: span ${columnSpan};
+			grid-row: span ${rowSpan};
 			display: ${type ? '' : 'none'};
     `;
 	}
@@ -283,9 +290,6 @@
 		: typeof mounted === 'boolean' &&
 			typeof $mediaQueries === 'object' &&
 			handleVisibility($editMode, view?.sections, $states);
-
-			console.log(view?.sections?.items);
-			
 </script>
 
 <main
@@ -460,11 +464,6 @@
 		border-radius: 0.6rem;
 		height: 100%;
 	}
-	.double-width {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, 30.5rem);
-	}
-
 	.item {
 		position: relative;
 		border-radius: 0.65rem;
